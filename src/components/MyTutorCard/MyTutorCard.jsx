@@ -1,31 +1,42 @@
+import axios from "axios";
+import toast from "react-hot-toast";
+
 /* eslint-disable react/prop-types */
-const MyTutorCard = ({ tutor }) => {
-  const { name, photo, language, price, description, review } = tutor;
+const MyTutorCard = ({ tutor, fetchMyTutor }) => {
+  const { name, photo, language, price, description, review, _id } = tutor;
+  const handleDeleteTutor = async (id) => {
+    await axios.delete(`http://localhost:5000/tutor/${id}`).then((res) => {
+      // console.log(res.data)
+      if (res.data.deletedCount > 0) {
+        toast.success("Tutor Successfully deleted");
+        fetchMyTutor();
+      }
+    });
+  };
+
+  const handleDeleteWithToast = (id) => {
+    toast((t) => (
+      <div>
+        <div className="flex items-center gap-2">
+          <span>
+            Are you <b>sure?</b>
+          </span>
+          <div className="flex items-center gap-2">
+            <button className="bg-red-600 px-2 py-1 rounded-sm text-white font-semibold"
+              onClick={() => {
+                toast.dismiss(t.id)
+                handleDeleteTutor(id)
+              }}
+            >
+              Yes
+            </button>
+            <button className="bg-green-600 px-2 py-1 rounded-sm text-white font-semibold" onClick={() => toast.dismiss(t.id)}>Cancel</button>
+          </div>
+        </div>
+      </div>
+    ));
+  };
   return (
-    // <div className="max-w-sm bg-white border border-gray-200 rounded-lg shadow-md overflow-hidden">
-    //   <img
-    //     className="w-full h-48 object-cover"
-    //     src={photo}
-    //     alt={`${name}'s photo`}
-    //   />
-    //   <div className="p-4">
-    //     <h3 className="text-lg font-semibold text-gray-800">{name}</h3>
-    //     <p className="text-sm text-gray-600 mt-1">Language: {language}</p>
-    //     <p className="text-sm text-gray-600 mt-1">Price: ${price}</p>
-    //     <p className="text-sm text-gray-600 mt-1">Description: {description}</p>
-    //     <p className="text-sm text-gray-600 mt-1">
-    //       Review: <span className="text-gray-800 font-medium">{review}</span>
-    //     </p>
-    //     <div className="mt-4 flex gap-2">
-    //       <button className="w-full bg-red-500 text-white py-2 px-4 rounded hover:bg-red-600">
-    //         Delete
-    //       </button>
-    //       <button className="w-full bg-yellow-500 text-white py-2 px-4 rounded hover:bg-yellow-600">
-    //         Update
-    //       </button>
-    //     </div>
-    //   </div>
-    // </div>
     <div className="max-w-md bg-gradient-to-br from-blue-50 to-blue-100 border border-gray-200 rounded-xl shadow-lg overflow-hidden transform hover:scale-105 transition duration-300">
       <img
         className="w-full h-56 object-cover rounded-t-xl"
@@ -39,11 +50,16 @@ const MyTutorCard = ({ tutor }) => {
           <span className="px-3 py-1 bg-gray-200 text-gray-800 rounded-full text-sm">
             Language: {language}
           </span>
-          <span className="text-lg font-semibold text-green-500">Price: ${price}</span>
+          <span className="text-lg font-semibold text-green-500">
+            Price: ${price}
+          </span>
         </div>
         <p className="text-sm text-gray-700 mb-4">{description}</p>
         <div className="flex gap-3">
-          <button className="flex-1 bg-red-500 text-white py-2 rounded-lg shadow-md hover:bg-red-600 transition duration-200">
+          <button
+            onClick={() => handleDeleteWithToast(_id)}
+            className="flex-1 bg-red-500 text-white py-2 rounded-lg shadow-md hover:bg-red-600 transition duration-200"
+          >
             Delete
           </button>
           <button className="flex-1 bg-yellow-500 text-white py-2 rounded-lg shadow-md hover:bg-yellow-600 transition duration-200">

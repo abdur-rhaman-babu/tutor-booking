@@ -14,7 +14,7 @@ const MyTutorials = () => {
 
   const fetchMyTutor = async () => {
     const res = await axios.get(`http://localhost:5000/tutors/${user?.email}`);
-    console.log(res.data);
+    // console.log(res.data);
     setTutors(res.data);
   };
 
@@ -25,7 +25,7 @@ const MyTutorials = () => {
         </div>
       <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-5">
         {tutors.map((tutor) => (
-          <MyTutorCard key={tutor._id} tutor={tutor} />
+          <MyTutorCard key={tutor._id} tutor={tutor} fetchMyTutor={fetchMyTutor}/>
         ))}
       </div>
     </div>

@@ -8,11 +8,13 @@ import MyBookedTutorials from "../pages/MyBookedTutorials/MyBookedTutorials";
 import Login from "../pages/Login/Login";
 import Register from "../pages/Register/Register";
 import PrivateRoute from "../Context/PrivateRoute/PrivateRoute";
+import ErrorPage from "../components/ErrorPage/ErrorPage";
 
 export const router = createBrowserRouter([
     {
         path:'/',
         element: <Main/>,
+        errorElement:<ErrorPage/>,
         children: [
             {
                 path:'/',

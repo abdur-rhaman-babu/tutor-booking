@@ -1,14 +1,21 @@
-import { Outlet } from "react-router-dom";
+import { Outlet, useNavigation } from "react-router-dom";
 import Navbar from "../Navbar/Navbar";
 import Footer from "../Footer/Footer";
 
 const Main = () => {
+  const navigation = useNavigation();
   return (
     <div>
       <Navbar />
-      <div className="min-h-[80vh] mt-16">
-        <Outlet />
-      </div>
+      {navigation.state === "loading" ? (
+        <div className="flex items-center justify-center h-screen">
+          <span className="loading loading-spinner loading-lg"></span>
+        </div>
+      ) : (
+        <div className="min-h-[80vh] mt-20">
+          <Outlet />
+        </div>
+      )}
       <Footer />
     </div>
   );

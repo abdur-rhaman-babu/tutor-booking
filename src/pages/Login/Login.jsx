@@ -1,14 +1,25 @@
+import { useContext } from "react";
 import { FcGoogle } from "react-icons/fc";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../Context/AuthContext/AuthContext";
 
 const Login = () => {
+  const {error, setError, loginUser, setUser} = useContext(AuthContext)
 const handleLogin = (e) =>{
   e.preventDefault()
   const form = e.target;
   const email = form.email.value;
   const password = form.password.value;
-  const user = {email, password}
-  console.log(user)
+  
+  loginUser(email,password)
+  .then(result=> {
+    console.log(result.user)
+    setUser(result.user)
+  })
+  .catch(error=> {
+    console.log(error, 'error')
+    setError('Email or Password invalid')
+  })
 }
   return (
     <div className="flex justify-center items-center h-screen">
@@ -46,6 +57,7 @@ const handleLogin = (e) =>{
           <div className="form-control">
             <button className="btn btn-primary">Login</button>
           </div>
+          <p className="text-red-600">{error}</p>
           <div className="border-2 cursor-pointer flex items-center justify-center p-2 gap-2 rounded-lg">
                 <i><FcGoogle size={25} /></i>
                 <span className="font-semibold">Login With Google</span>

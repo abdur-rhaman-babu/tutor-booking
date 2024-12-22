@@ -7,6 +7,7 @@ import MyTutorials from "../pages/MyTutorials/MyTutorials";
 import MyBookedTutorials from "../pages/MyBookedTutorials/MyBookedTutorials";
 import Login from "../pages/Login/Login";
 import Register from "../pages/Register/Register";
+import PrivateRoute from "../Context/PrivateRoute/PrivateRoute";
 
 export const router = createBrowserRouter([
     {
@@ -23,15 +24,15 @@ export const router = createBrowserRouter([
             },
             {
                 path:'/addTutorials',
-                element:<AddTutor/>
+                element:<PrivateRoute><AddTutor/></PrivateRoute>
             },
             {
                 path:'/myTutorials',
-                element:<MyTutorials/>
+                element:<PrivateRoute><MyTutorials/></PrivateRoute>
             },
             {
                 path:'/myBookedTutorials',
-                element:<MyBookedTutorials/>
+                element:<PrivateRoute><MyBookedTutorials/></PrivateRoute>
             },
             
             {

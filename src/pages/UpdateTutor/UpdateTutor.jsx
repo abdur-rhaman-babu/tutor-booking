@@ -1,38 +1,47 @@
-import { useContext } from "react";
-import { useNavigate } from "react-router-dom";
+import { useContext, useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import { AuthContext } from "../../Context/AuthContext/AuthContext";
 import axios from "axios";
 import toast from "react-hot-toast";
+const UpdateTutor = () => {
+    const { user } = useContext(AuthContext);
+    const {id} = useParams()
+    const navigate = useNavigate();
+    const [tutor, setTutor] = useState({})
 
-const AddTutor = () => {
-  const { user } = useContext(AuthContext);
-  const navigate = useNavigate();
-  const handleAddTutorials = (e) => {
-    e.preventDefault();
-    const form = e.target;
-    const name = form.name.value;
-    const photo = form.photo.value;
-    const email = form.email.value;
-    const price = form.price.value;
-    const language = form.language.value;
-    const description = form.description.value;
-    const review = 0;
-    const tutors = {name, email, photo, price, language, description, review}
-    // console.log(tutors)
+    const {photo, language, price,description, _id } = tutor;
 
-    axios.post('http://localhost:5000/tutors', tutors)
-    .then(res=> {
-        if(res.data.insertedId){
-            toast.success('tutor added succssfully')  
-            navigate('/find-tutor')  
-        }
-    })
-  };
-
-  return (
-    <div className="flex justify-center items-center h-screen">
+    useEffect(()=>{
+        axios.get(`http://localhost:5000/update/${id}`)
+        .then(res=>{
+            setTutor(res.data)
+        })
+    },[id])
+    const handleUpdateTutor = (e) => {
+      e.preventDefault();
+      const form = e.target;
+      const name = form.name.value;
+      const photo = form.photo.value;
+      const email = form.email.value;
+      const price = form.price.value;
+      const language = form.language.value;
+      const description = form.description.value;
+      const review = 0;
+      const tutors = {name, email, photo, price, language, description, review}
+      // console.log(tutors)
+  
+      axios.post(`http://localhost:5000/update/${_id}`, tutors)
+      .then(res=> {
+          if(res.data.modifiedCount){
+              toast.success('tutor updated succssfully')  
+              navigate('/myTutorials')  
+          }
+      })
+    };
+    return (
+        <div className="flex justify-center items-center h-screen">
       <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
-        <form onSubmit={handleAddTutorials} className="card-body">
+        <form onSubmit={handleUpdateTutor} className="card-body">
           <div className="form-control">
             <label className="label">
               <span className="label-text">Name</span>
@@ -66,6 +75,7 @@ const AddTutor = () => {
               <span className="label-text">Photo URL</span>
             </label>
             <input
+            defaultValue={photo}
               name="photo"
               type="text"
               placeholder="photo url"
@@ -78,7 +88,7 @@ const AddTutor = () => {
               <span className="label-text">Language</span>
             </label>
 
-            <select className="border p-3 rounded-lg" name="language" id="">
+            <select defaultValue={language} className="border p-3 rounded-lg" name="language" id="">
               <option value="English">English</option>
               <option value="Spanish">Spanish</option>
               <option value="French">French</option>
@@ -95,6 +105,7 @@ const AddTutor = () => {
               <span className="label-text">Price</span>
             </label>
             <input
+            defaultValue={price}
               name="price"
               type="text"
               placeholder="price"
@@ -110,6 +121,7 @@ const AddTutor = () => {
             <textarea
               className="border rounded-lg h-20 p-3"
               name="description"
+              defaultValue={description}
               id=""
               required
             ></textarea>
@@ -120,7 +132,7 @@ const AddTutor = () => {
         </form>
       </div>
     </div>
-  );
+    );
 };
 
-export default AddTutor;
+export default UpdateTutor;

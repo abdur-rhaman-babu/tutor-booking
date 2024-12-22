@@ -9,6 +9,7 @@ import Login from "../pages/Login/Login";
 import Register from "../pages/Register/Register";
 import PrivateRoute from "../Context/PrivateRoute/PrivateRoute";
 import ErrorPage from "../components/ErrorPage/ErrorPage";
+import UpdateTutor from "../pages/UpdateTutor/UpdateTutor";
 
 export const router = createBrowserRouter([
     {
@@ -35,6 +36,10 @@ export const router = createBrowserRouter([
             {
                 path:'/myBookedTutorials',
                 element:<PrivateRoute><MyBookedTutorials/></PrivateRoute>
+            },
+            {
+                path:'/update/:id',
+                element:<UpdateTutor/>
             },
             
             {

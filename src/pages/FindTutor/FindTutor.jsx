@@ -18,10 +18,15 @@ const FindTutor = () => {
     });
   };
   return (
-    <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-5 max-w-7xl mx-auto">
-      {tutors.map((tutor) => (
-        <TutorCard key={tutor._id} tutor={tutor} />
-      ))}
+    <div className="max-w-7xl mx-auto pt-10 my-10">
+      <div>
+        <h1 className="font-bold text-2xl text-center mb-5">Find Tutorials</h1>
+      </div>
+      <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-5">
+        {tutors.map((tutor) => (
+          <TutorCard key={tutor._id} tutor={tutor} />
+        ))}
+      </div>
     </div>
   );
 };

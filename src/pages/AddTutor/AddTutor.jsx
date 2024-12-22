@@ -1,10 +1,12 @@
 import { useContext } from "react";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Context/AuthContext/AuthContext";
+import axios from "axios";
+import toast from "react-hot-toast";
 
 const AddTutor = () => {
   const { user } = useContext(AuthContext);
-  const navigate = useNavigate();
+//   const navigate = useNavigate();
   const handleAddTutorials = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -17,6 +19,14 @@ const AddTutor = () => {
     const review = 0;
     const tutorial = {name, email, photo, price, language, description, review}
     console.log(tutorial)
+
+    axios.post('http://localhost:5000/tutorials', tutorial)
+    .then(res=> {
+        console.log(res.data)
+        if(res.data.insertedId){
+            toast.success('tutor added succssfully')    
+        }
+    })
   };
   return (
     <div className="flex justify-center items-center h-screen">

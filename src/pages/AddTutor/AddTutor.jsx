@@ -17,17 +17,17 @@ const AddTutor = () => {
     const language = form.language.value;
     const description = form.description.value;
     const review = 0;
-    const tutorial = {name, email, photo, price, language, description, review}
-    console.log(tutorial)
+    const tutors = {name, email, photo, price, language, description, review}
+    // console.log(tutors)
 
-    axios.post('http://localhost:5000/tutorials', tutorial)
+    axios.post('http://localhost:5000/tutors', tutors)
     .then(res=> {
-        console.log(res.data)
         if(res.data.insertedId){
             toast.success('tutor added succssfully')    
         }
     })
   };
+
   return (
     <div className="flex justify-center items-center h-screen">
       <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">

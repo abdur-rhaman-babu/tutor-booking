@@ -1,16 +1,17 @@
 import { useContext, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Context/AuthContext/AuthContext";
 import { IoEye, IoEyeOff } from "react-icons/io5";
 
 const Register = () => {
-  const { setError, error, createUser, setUser } = useContext(AuthContext);
+  const { setError, error, createUser, setUser, userUpdateProfile } = useContext(AuthContext);
   const [showPassword, setShowPassword] = useState(false);
+  const navigate = useNavigate()
   const handleRegister = (e) => {
     e.preventDefault();
     const form = e.target;
-    // const name = form.name.value;
-    // const photo = form.photo.value;
+    const name = form.name.value;
+    const photo = form.photo.value;
     const email = form.email.value;
     const password = form.password.value;
 
@@ -28,14 +29,23 @@ const Register = () => {
       setError("Password must be 6 character or upper");
     }
 
+    const profile = {
+      displayName: name,
+      photoURL: photo
+    }
+
     createUser(email, password)
       .then((result) => {
         console.log(result.user);
         setUser(result.user);
+        userUpdateProfile(profile)
+        navigate('/')
       })
       .catch((error) => {
         console.log(error, "Error");
-      });
+      });  
+      
+
   };
   return (
     <div className="flex justify-center items-center h-screen">

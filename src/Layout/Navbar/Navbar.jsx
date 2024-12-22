@@ -1,7 +1,15 @@
 import { NavLink } from "react-router-dom";
 import logo from "../../assets/Image/logo.png";
 import { CiLight } from "react-icons/ci";
+import { useContext } from "react";
+import { AuthContext } from "../../Context/AuthContext/AuthContext";
+
 const Navbar = () => {
+  const { user, signOutUser } = useContext(AuthContext);
+
+  const handleSignOut = () =>{
+    signOutUser()
+  }
   return (
     <div className="navbar bg-base-100 lg:px-16 shadow-lg fixed top-0 left-0 right-0 z-50">
       <div className="navbar-start">
@@ -41,6 +49,16 @@ const Navbar = () => {
             <li>
               <NavLink to="/myBookedTutorials">My Booked Tutorials</NavLink>
             </li>
+            {user?.email ? (
+             <div>
+             <button onClick={handleSignOut} className="border-2 p-2 rounded-lg">Logout</button>
+             <img className="w-12 h-12 rounded-lg mt-2" src={user?.photoURL} alt="" />
+           </div>
+            ) : (
+              <li className="border-2 rounded-lg ml-3">
+                <NavLink to="/login">Login</NavLink>
+              </li>
+            )}
           </ul>
         </div>
         <div className="flex items-center gap-3">
@@ -54,24 +72,34 @@ const Navbar = () => {
             <NavLink to="/">Home</NavLink>
           </li>
           <li>
-              <NavLink to="/findTutor">Find Tutors</NavLink>
-            </li>
-            <li>
-              <NavLink to="/addTutorials">Add Tutorials</NavLink>
-            </li>
-            <li>
-              <NavLink to="/myTutorials">My Tutorials</NavLink>
-            </li>
-            <li>
-              <NavLink to="/myBookedTutorials">My Booked Tutorials</NavLink>
-            </li>
-            <li className="border-2 rounded-lg ml-3">
-              <NavLink to="/login">Login</NavLink>
-            </li>
+            <NavLink to="/findTutor">Find Tutors</NavLink>
+          </li>
+          <li>
+            <NavLink to="/addTutorials">Add Tutorials</NavLink>
+          </li>
+          <li>
+            <NavLink to="/myTutorials">My Tutorials</NavLink>
+          </li>
+          <li>
+            <NavLink to="/myBookedTutorials">My Booked Tutorials</NavLink>
+          </li>
+          {user?.email ? (
+              <div className="flex items-center gap-2">
+                <button onClick={handleSignOut} className="border-2 p-2 rounded-lg">Logout</button>
+                <img className="w-10 h-10 rounded-full" src={user?.photoURL} alt="" />
+              </div>
+              
+            ) : (
+              <li className="border-2 cursor-pointer rounded-lg ml-3">
+                <NavLink to="/login">Login</NavLink>
+              </li>
+            )}
         </ul>
       </div>
       <div className="navbar-end">
-        <i className="cursor-pointer"><CiLight size={35} /></i>
+        <i className="cursor-pointer">
+          <CiLight size={35} />
+        </i>
       </div>
     </div>
   );

@@ -1,5 +1,6 @@
 import Banner from "../../components/Banner/Banner";
 import Stats from "../../components/Stats/Stats";
+import FindTutorCategory from "../FindTutorCategory/FindTutorCategory";
 
 
 const Home = () => {
@@ -7,6 +8,7 @@ const Home = () => {
         <div>
             <Banner/>
             <Stats/>
+            <FindTutorCategory/>
         </div>
     );
 };

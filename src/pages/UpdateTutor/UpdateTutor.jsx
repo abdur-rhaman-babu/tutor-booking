@@ -83,7 +83,8 @@ const UpdateTutor = () => {
               required
             />
           </div>
-          <div className="form-control">
+          {
+            language && <div className="form-control">
             <label className="label">
               <span className="label-text">Language</span>
             </label>
@@ -100,6 +101,7 @@ const UpdateTutor = () => {
               <option value="Portuguese">Portuguese</option>
             </select>
           </div>
+          }
           <div className="form-control relative">
             <label className="label">
               <span className="label-text">Price</span>

@@ -5,14 +5,14 @@ import Footer from "../Footer/Footer";
 const Main = () => {
   const navigation = useNavigation();
   return (
-    <div>
+    <div className="dark:bg-black dark:text-white">
       <Navbar />
       {navigation.state === "loading" ? (
         <div className="flex items-center justify-center h-screen">
           <span className="loading loading-spinner loading-lg"></span>
         </div>
       ) : (
-        <div className="min-h-[80vh] mt-20">
+        <div className="min-h-[80vh] pt-20">
           <Outlet />
         </div>
       )}

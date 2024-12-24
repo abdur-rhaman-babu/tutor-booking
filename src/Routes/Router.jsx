@@ -10,6 +10,8 @@ import Register from "../pages/Register/Register";
 import PrivateRoute from "../Context/PrivateRoute/PrivateRoute";
 import ErrorPage from "../components/ErrorPage/ErrorPage";
 import UpdateTutor from "../pages/UpdateTutor/UpdateTutor";
+import TutorDetails from "../pages/TutorDetails/TutorDetails";
+import FindTutorCategory from "../pages/FindTutorCategory/FindTutorCategory";
 
 export const router = createBrowserRouter([
     {
@@ -26,6 +28,10 @@ export const router = createBrowserRouter([
                 element:<FindTutor/>
             },
             {
+                path:'/find-tutor/:category',
+                element:<FindTutorCategory/>
+            },
+            {
                 path:'/addTutorials',
                 element:<PrivateRoute><AddTutor/></PrivateRoute>
             },
@@ -36,6 +42,10 @@ export const router = createBrowserRouter([
             {
                 path:'/myBookedTutorials',
                 element:<PrivateRoute><MyBookedTutorials/></PrivateRoute>
+            },
+            {
+                path:'/details/:id',
+                element:<PrivateRoute><TutorDetails/></PrivateRoute>
             },
             {
                 path:'/update/:id',

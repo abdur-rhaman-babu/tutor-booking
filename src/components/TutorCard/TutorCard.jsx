@@ -1,6 +1,8 @@
+import { Link } from "react-router-dom";
+
 /* eslint-disable react/prop-types */
 const TutorCard = ({ tutor }) => {
-  const { name, photo, language, review } = tutor;
+  const { name, photo, language, review, _id } = tutor;
   return (
     <div className="max-w-sm bg-white border border-gray-200 rounded-lg shadow-md overflow-hidden">
       <img
@@ -14,9 +16,11 @@ const TutorCard = ({ tutor }) => {
         <p className="text-sm text-gray-600 mt-1">
           Review: <span className="text-gray-800 font-medium">{review}</span>
         </p>
+        <Link to={`/details/${_id}`}>
         <button className="mt-4 w-full bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600">
           View Details
         </button>
+        </Link>
       </div>
     </div>
   );

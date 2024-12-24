@@ -3,16 +3,17 @@ import { useNavigate, useParams } from "react-router-dom";
 import { AuthContext } from "../../Context/AuthContext/AuthContext";
 import axios from "axios";
 import toast from "react-hot-toast";
+import useAxiosSecure from "../../components/UseAxiosSecure/useAxiosSecure";
 const UpdateTutor = () => {
     const { user } = useContext(AuthContext);
     const {id} = useParams()
     const navigate = useNavigate();
     const [tutor, setTutor] = useState({})
-
+    const axiosSecure = useAxiosSecure()
     const {photo, language, price,description, _id } = tutor;
 
     useEffect(()=>{
-        axios.get(`http://localhost:5000/update/${id}`)
+      axiosSecure.get(`/update/${id}`)
         .then(res=>{
             setTutor(res.data)
         })
@@ -30,7 +31,7 @@ const UpdateTutor = () => {
       const tutors = {name, email, photo, price, language, description, review}
       // console.log(tutors)
   
-      axios.post(`http://localhost:5000/update/${_id}`, tutors)
+      axios.post(`https://booking-tutor-server.vercel.app/update/${_id}`, tutors)
       .then(res=> {
           if(res.data.modifiedCount){
               toast.success('tutor updated succssfully')  

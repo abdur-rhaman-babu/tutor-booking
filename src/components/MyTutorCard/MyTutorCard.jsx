@@ -1,13 +1,15 @@
 import axios from "axios";
 import toast from "react-hot-toast";
 import { Link } from "react-router-dom";
+import useAxiosSecure from "../UseAxiosSecure/useAxiosSecure";
 
 /* eslint-disable react/prop-types */
 const MyTutorCard = ({ tutor, fetchMyTutor }) => {
   const { name, photo, language, price, description, review, _id } = tutor;
+  const axiosSecure = useAxiosSecure()
+  
   const handleDeleteTutor = async (id) => {
-    await axios.delete(`http://localhost:5000/tutor/${id}`).then((res) => {
-      // console.log(res.data)
+    await axiosSecure.delete(`/tutor/${id}`).then((res) => {
       if (res.data.deletedCount > 0) {
         toast.success("Tutor Successfully deleted");
         fetchMyTutor();
@@ -50,9 +52,9 @@ const MyTutorCard = ({ tutor, fetchMyTutor }) => {
         src={photo}
         alt={`${name}'s photo`}
       />
-      <div className="flex-1 p-6 flex flex-col">
-        <h3 className="text-2xl font-bold text-gray-800 mb-2">{name}</h3>
-        <p className="text-sm text-gray-600 mb-4 italic">Review: {review}</p>
+      <div className="flex-1 p-6 flex flex-col dark:bg-black">
+        <h3 className="text-2xl font-bold text-gray-800 mb-2 dark:text-white">{name}</h3>
+        <p className="text-sm text-gray-600 mb-4 italic dark:text-white">Review: {review}</p>
         <div className="flex items-center justify-between text-gray-700 mb-4">
           <span className="px-3 py-1 bg-gray-200 text-gray-800 rounded-full text-sm">
             Language: {language}
@@ -61,7 +63,7 @@ const MyTutorCard = ({ tutor, fetchMyTutor }) => {
             Price: ${price}
           </span>
         </div>
-        <p className="text-sm text-gray-700 mb-4">{description}</p>
+        <p className="text-sm text-gray-700 mb-4 dark:text-white">{description}</p>
         <div className="mt-auto flex gap-3">
           <button
             onClick={() => handleDeleteWithToast(_id)}

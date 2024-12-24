@@ -3,10 +3,12 @@ import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Context/AuthContext/AuthContext";
 import axios from "axios";
 import toast from "react-hot-toast";
+import useAxiosSecure from "../../components/UseAxiosSecure/useAxiosSecure";
 
 const AddTutor = () => {
   const { user } = useContext(AuthContext);
   const navigate = useNavigate();
+  const axiosSecure = useAxiosSecure()
   const handleAddTutorials = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -18,9 +20,8 @@ const AddTutor = () => {
     const description = form.description.value;
     const review = 0;
     const tutors = {name, email, photo, price, language, description, review}
-    // console.log(tutors)
-
-    axios.post('http://localhost:5000/tutors', tutors)
+    
+    axiosSecure.post('/tutors', tutors)
     .then(res=> {
         if(res.data.insertedId){
             toast.success('tutor added succssfully')  
@@ -31,54 +32,54 @@ const AddTutor = () => {
 
   return (
     <div className="flex justify-center items-center h-screen">
-      <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
+      <div className="card bg-base-100 dark:bg-black dark:border-2 w-full max-w-sm shrink-0 shadow-2xl">
         <form onSubmit={handleAddTutorials} className="card-body">
           <div className="form-control">
             <label className="label">
-              <span className="label-text">Name</span>
+              <span className="label-text dark:text-white">Name</span>
             </label>
             <input
               defaultValue={user?.displayName}
               name="name"
               type="name"
               placeholder="name"
-              className="input input-bordered"
+              className="input input-bordered dark:text-black"
               readOnly
               required
             />
           </div>
           <div className="form-control">
             <label className="label">
-              <span className="label-text">Email</span>
+              <span className="label-text dark:text-white">Email</span>
             </label>
             <input
               defaultValue={user?.email}
               name="email"
               type="email"
               placeholder="email"
-              className="input input-bordered"
+              className="input input-bordered dark:text-black"
               readOnly
               required
             />
           </div>
           <div className="form-control">
             <label className="label">
-              <span className="label-text">Photo URL</span>
+              <span className="label-text dark:text-white">Photo URL</span>
             </label>
             <input
               name="photo"
               type="text"
               placeholder="photo url"
-              className="input input-bordered"
+              className="input input-bordered dark:text-black"
               required
             />
           </div>
           <div className="form-control">
             <label className="label">
-              <span className="label-text">Language</span>
+              <span className="label-text dark:text-white">Language</span>
             </label>
 
-            <select className="border p-3 rounded-lg" name="language" id="">
+            <select className="border p-3 rounded-lg dark:text-black" name="language" id="">
               <option value="English">English</option>
               <option value="Spanish">Spanish</option>
               <option value="French">French</option>
@@ -92,23 +93,23 @@ const AddTutor = () => {
           </div>
           <div className="form-control relative">
             <label className="label">
-              <span className="label-text">Price</span>
+              <span className="label-text dark:text-white">Price</span>
             </label>
             <input
               name="price"
               type="text"
               placeholder="price"
-              className="input input-bordered"
+              className="input input-bordered dark:text-black"
               required
             />
           </div>
           <div className="form-control relative">
             <label className="label">
-              <span className="label-text">Description</span>
+              <span className="label-text dark:text-white">Description</span>
             </label>
 
             <textarea
-              className="border rounded-lg h-20 p-3"
+              className="border rounded-lg h-20 p-3 dark:text-black"
               name="description"
               id=""
               required

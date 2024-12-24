@@ -1,10 +1,12 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import useAxiosSecure from "../../components/UseAxiosSecure/useAxiosSecure";
 
 const TutorDetails = () => {
   const { id } = useParams();
   const [tutor, setTutor] = useState({});
+  const axiosSecure = useAxiosSecure()
   const { name, photo, language, description, price, review } = tutor;
   useEffect(() => {
     fetchTutor();
@@ -12,7 +14,7 @@ const TutorDetails = () => {
   }, [id]);
 
   const fetchTutor = async () => {
-    await axios.get(`http://localhost:5000/details/${id}`).then((res) => {
+    await axiosSecure.get(`/details/${id}`).then((res) => {
       setTutor(res.data);
     });
   };

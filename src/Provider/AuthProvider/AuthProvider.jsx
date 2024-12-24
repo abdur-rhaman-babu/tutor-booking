@@ -13,12 +13,13 @@ import {
 import { auth } from "../../Firebase/firebase.config";
 import axios from "axios";
 
+
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
   const googleProvider = new GoogleAuthProvider();
-
+  
   const createUser = (email, password) => {
     setLoading(true);
     return createUserWithEmailAndPassword(auth, email, password);
@@ -65,7 +66,7 @@ const AuthProvider = ({ children }) => {
         const user = { email: currentuser?.email };
 
         axios
-          .post("http://localhost:5000/jwt", user, { withCredentials: true })
+          .post("https://booking-tutor-server.vercel.app/jwt", user, { withCredentials: true })
           .then((res) => {
             console.log(res.data);
             setLoading(false);
@@ -73,7 +74,7 @@ const AuthProvider = ({ children }) => {
       } else {
         axios
           .post(
-            "http://localhost:5000/logout",
+            "https://booking-tutor-server.vercel.app/logout",
             {},
             {
               withCredentials: true,

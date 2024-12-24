@@ -1,6 +1,6 @@
 const Stats = () => {
     return (
-        <div className="my-10 grid md:grid-cols-2 lg:grid-cols-5 justify-between max-w-7xl mx-auto">
+        <div className="py-14 grid md:grid-cols-2 lg:grid-cols-5 justify-between max-w-7xl mx-auto">
             <div className="text-center">
                 <p className="font-bold text-xl">32,000+</p>
                 <p>Experience Tutors</p>

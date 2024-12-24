@@ -1,6 +1,6 @@
 import { NavLink } from "react-router-dom";
 import logo from "../../assets/Image/logo.png";
-import { CiLight } from "react-icons/ci";
+import { CiDark, CiLight } from "react-icons/ci";
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../Context/AuthContext/AuthContext";
 import { Tooltip as ReactTooltip } from "react-tooltip";
@@ -17,7 +17,13 @@ const Navbar = () => {
   },[theme])
 
   const handleSignOut = () => {
-    signOutUser();
+    signOutUser()
+    .then(()=>{
+      // console.log('signout successfull')
+    })
+    .catch(error=>{
+      // console.log(error, 'error')
+    })
   };
   return (
     <div className="navbar dark:bg-black dark:text-white border-b bg-base-100 lg:px-16 shadow-lg fixed top-0 left-0 right-0 z-50">
@@ -130,7 +136,10 @@ const Navbar = () => {
       </div>
       <div className="navbar-end">
         <button onClick={()=> setTheme(!theme)} className="cursor-pointer">
-          <CiLight size={35} />
+        {
+          theme ?<CiLight size={35} />:<CiDark size={35} />
+        }
+          
         </button>
       </div>
     </div>

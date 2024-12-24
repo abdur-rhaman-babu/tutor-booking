@@ -1,24 +1,25 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import TutorCard from "../../components/TutorCard/TutorCard";
+import useAxiosSecure from "../../components/UseAxiosSecure/useAxiosSecure";
 
 const FindTutor = () => {
   const [tutors, setTutors] = useState([]);
-
-  console.log(tutors);
+  const axiosSecure = useAxiosSecure()
 
   useEffect(() => {
     fetchAllTutors();
   }, []);
 
   const fetchAllTutors = async () => {
-    await axios.get("http://localhost:5000/tutors").then((res) => {
-      console.log(res.data);
+    await axiosSecure.get("/tutors").then((res) => {
+      // console.log(res.data);
       setTutors(res.data);
     });
   };
+
   return (
-    <div className="max-w-7xl mx-auto pt-10 my-10">
+    <div className="max-w-7xl mx-auto py-10 dark:bg-black">
       <div>
         <h1 className="font-bold text-2xl text-center mb-5">Find Tutorials</h1>
       </div>

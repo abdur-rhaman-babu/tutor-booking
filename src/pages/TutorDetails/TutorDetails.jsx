@@ -27,6 +27,7 @@ const TutorDetails = () => {
 
   const handleBookedTutor = () => {
     const bookedTutor = {
+      name,
       tutorId: _id,
       photo,
       language,
@@ -43,6 +44,7 @@ const TutorDetails = () => {
         navigate('/myBookedTutorials')
       }
     })
+
   };
 
   return (

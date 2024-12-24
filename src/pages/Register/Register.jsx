@@ -48,12 +48,12 @@ const Register = () => {
 
   };
   return (
-    <div className="flex justify-center items-center h-screen">
-      <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
+    <div className="flex justify-center items-center py-10">
+      <div className="card bg-base-100 dark:bg-black dark:border-2 w-full max-w-sm shrink-0 shadow-2xl">
         <form onSubmit={handleRegister} className="card-body">
           <div className="form-control">
             <label className="label">
-              <span className="label-text">Name</span>
+              <span className="label-text dark:text-white">Name</span>
             </label>
             <input
               name="name"
@@ -65,7 +65,7 @@ const Register = () => {
           </div>
           <div className="form-control">
             <label className="label">
-              <span className="label-text">Photo URL</span>
+              <span className="label-text dark:text-white">Photo URL</span>
             </label>
             <input
               name="photo"
@@ -77,7 +77,7 @@ const Register = () => {
           </div>
           <div className="form-control">
             <label className="label">
-              <span className="label-text">Email</span>
+              <span className="label-text dark:text-white">Email</span>
             </label>
             <input
               name="email"
@@ -89,13 +89,13 @@ const Register = () => {
           </div>
           <div className="form-control relative">
             <label className="label">
-              <span className="label-text">Password</span>
+              <span className="label-text dark:text-white">Password</span>
             </label>
             <input
               name="password"
               type={`${showPassword ? "text" : "password"}`}
               placeholder="password"
-              className="input input-bordered"
+              className="input input-bordered dark:text-black"
               required
             />
             <i

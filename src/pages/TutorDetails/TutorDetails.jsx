@@ -1,13 +1,19 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useContext, useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import useAxiosSecure from "../../components/UseAxiosSecure/useAxiosSecure";
+import { AuthContext } from "../../Context/AuthContext/AuthContext";
+import toast from "react-hot-toast";
 
 const TutorDetails = () => {
+  const { user } = useContext(AuthContext);
   const { id } = useParams();
   const [tutor, setTutor] = useState({});
-  const axiosSecure = useAxiosSecure()
-  const { name, photo, language, description, price, review } = tutor;
+  const axiosSecure = useAxiosSecure();
+  const navigate = useNavigate()
+  const { name, photo, language, description, price, review, _id, email } =
+    tutor;
+  // console.log(tutor);
   useEffect(() => {
     fetchTutor();
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -18,6 +24,27 @@ const TutorDetails = () => {
       setTutor(res.data);
     });
   };
+
+  const handleBookedTutor = () => {
+    const bookedTutor = {
+      tutorId: _id,
+      photo,
+      language,
+      price,
+      tutor_email: email,
+      user_email: user?.email
+    };
+
+    axios.post('http://localhost:5000/my-booked-tutor', bookedTutor, {withCredentials:true})
+    .then(res=>{
+      console.log(res.data)
+      if(res.data.insertedId){
+        toast.success('My booked tutor successfully added')
+        navigate('/myBookedTutorials')
+      }
+    })
+  };
+
   return (
     <div className="max-w-4xl mx-auto bg-white rounded-lg shadow-md overflow-hidden border border-gray-200 flex flex-col md:flex-row">
       <img
@@ -34,10 +61,15 @@ const TutorDetails = () => {
         </div>
         <div className="mt-4">
           <div className="flex justify-between items-center">
-            <p className="text-lg font-semibold text-green-600">Price: ${price}</p>
+            <p className="text-lg font-semibold text-green-600">
+              Price: ${price}
+            </p>
             <p className="text-sm text-yellow-500">Review: {review}</p>
           </div>
-          <button className="w-full mt-4 bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600">
+          <button
+            onClick={handleBookedTutor}
+            className="w-full mt-4 bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600"
+          >
             Book Now
           </button>
         </div>

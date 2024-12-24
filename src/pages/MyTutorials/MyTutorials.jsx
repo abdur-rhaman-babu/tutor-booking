@@ -12,9 +12,9 @@ const MyTutorials = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user]);
 
+
   const fetchMyTutor = async () => {
-    const res = await axios.get(`http://localhost:5000/tutors/${user?.email}`);
-    // console.log(res.data);
+    const res = await axios.get(`http://localhost:5000/myTutors?email=${user?.email}`, {withCredentials:true});
     setTutors(res.data);
   };
 

@@ -18,6 +18,7 @@ const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [review, setReview] = useState(0)
   const googleProvider = new GoogleAuthProvider();
   
   const createUser = (email, password) => {
@@ -56,19 +57,21 @@ const AuthProvider = ({ children }) => {
     setUser,
     userUpdateProfile,
     signInWithGoogle,
+    review,
+    setReview
   };
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentuser) => {
       setUser(currentuser);
-      console.log("state captured", currentuser?.email);
+      // console.log("state captured", currentuser?.email);
       if (currentuser?.email) {
         const user = { email: currentuser?.email };
 
         axios
           .post("https://booking-tutor-server.vercel.app/jwt", user, { withCredentials: true })
           .then((res) => {
-            console.log(res.data);
+            // console.log(res.data);
             setLoading(false);
           });
       } else {

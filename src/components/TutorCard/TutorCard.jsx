@@ -1,14 +1,10 @@
 import { Link } from "react-router-dom";
 
-
 /* eslint-disable react/prop-types */
 const TutorCard = ({ tutor }) => {
-
-
   const { name, photo, language, _id, review, price } = tutor;
   return (
     <div>
-      
       <div className="max-w-sm bg-white border dark:bg-black border-gray-200 rounded-lg shadow-md overflow-hidden">
         <img
           className="w-full h-48 object-cover"

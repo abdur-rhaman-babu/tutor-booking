@@ -1,8 +1,8 @@
-import axios from "axios";
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../Context/AuthContext/AuthContext";
 import MyBookedCard from "../../components/MyBookedCard/MyBookedCard";
 import useAxiosSecure from "../../components/UseAxiosSecure/useAxiosSecure";
+
 
 const MyBookedTutorials = () => {
   const { user } = useContext(AuthContext);
@@ -23,6 +23,8 @@ const MyBookedTutorials = () => {
         setTutors(res.data);
       });
   }
+
+  
   return (
     <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-5 py-10 max-w-7xl mx-auto">
       {tutors.map((tutor) => (

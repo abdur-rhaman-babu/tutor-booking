@@ -4,6 +4,7 @@ import { CiDark, CiLight } from "react-icons/ci";
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../Context/AuthContext/AuthContext";
 import { Tooltip as ReactTooltip } from "react-tooltip";
+import toast from "react-hot-toast";
 const Navbar = () => {
   const { user, signOutUser } = useContext(AuthContext);
   const [theme, setTheme] = useState(false);
@@ -20,6 +21,7 @@ const Navbar = () => {
     signOutUser()
       .then(() => {
         // console.log('signout successfull')
+        toast.success('signout successfull')
       })
       .catch((error) => {
         // console.log(error, 'error')

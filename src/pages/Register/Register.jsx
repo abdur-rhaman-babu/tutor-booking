@@ -2,10 +2,12 @@ import { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Context/AuthContext/AuthContext";
 import { IoEye, IoEyeOff } from "react-icons/io5";
+import toast from "react-hot-toast";
 
 const Register = () => {
-  const { setError, error, createUser, setUser, userUpdateProfile } = useContext(AuthContext);
+  const {createUser, setUser, userUpdateProfile } = useContext(AuthContext);
   const [showPassword, setShowPassword] = useState(false);
+  const [error, setError] = useState('');
   const navigate = useNavigate()
   const handleRegister = (e) => {
     e.preventDefault();
@@ -18,15 +20,18 @@ const Register = () => {
     const lowerCase = /[a-z]/;
     if (!lowerCase.test(password)) {
       setError("Password must be at least one lowercase letter");
+      return;
     }
 
     const upperCase = /[A-Z]/;
     if (!upperCase.test(password)) {
       setError("Password must be at least one uppercase letter");
+      return;
     }
 
     if (password.length < 6) {
       setError("Password must be 6 character or upper");
+      return;
     }
 
     const profile = {
@@ -36,13 +41,13 @@ const Register = () => {
 
     createUser(email, password)
       .then((result) => {
-        console.log(result.user);
         setUser(result.user);
         userUpdateProfile(profile)
+        toast.success('Registered successfull')
         navigate('/')
       })
       .catch((error) => {
-        console.log(error, "Error");
+        // console.log(error, "Error");
       });  
       
 

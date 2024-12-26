@@ -1,11 +1,12 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { FcGoogle } from "react-icons/fc";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Context/AuthContext/AuthContext";
+import toast from "react-hot-toast";
 
 const Login = () => {
-  const { error, setError, loginUser, setUser, signInWithGoogle } =
-    useContext(AuthContext);
+  const { loginUser, setUser, signInWithGoogle } = useContext(AuthContext);
+  const [error, setError] = useState('');
   const navigate = useNavigate();
   const handleLogin = (e) => {
     e.preventDefault();
@@ -15,21 +16,21 @@ const Login = () => {
 
     loginUser(email, password)
       .then((result) => {
-        console.log(result.user);
         setUser(result.user);
         navigate("/");
       })
       .catch((error) => {
-        console.log(error, "error");
         setError("Email or Password invalid");
       });
   };
 
   const handleSignInwithGoogle = () => {
-    signInWithGoogle();
-    navigate('/')
+    signInWithGoogle().then(() => {
+      toast.success("logged in successfull");
+      navigate("/");
+    });
   };
-  
+
   return (
     <div className="flex justify-center items-center py-10">
       <div className="card bg-base-100 dark:bg-black dark:border-2 w-full max-w-sm shrink-0 shadow-2xl">
@@ -58,7 +59,10 @@ const Login = () => {
               required
             />
             <label className="label">
-              <a href="#" className="label-text-alt link link-hover dark:text-white">
+              <a
+                href="#"
+                className="label-text-alt link link-hover dark:text-white"
+              >
                 Forgot password?
               </a>
             </label>

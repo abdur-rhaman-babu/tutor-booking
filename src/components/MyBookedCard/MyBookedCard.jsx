@@ -1,8 +1,5 @@
-
-
 const MyBookedCard = ({ tutor }) => {
-  const { name, photo, language, price } = tutor;
-  // console.log(tutor);
+  const { name, photo, language, price} = tutor;
 
   return (
     <div className="max-w-sm rounded overflow-hidden dark:bg-black shadow-lg bg-white border border-gray-200">

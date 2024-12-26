@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import TutorCard from "../../components/TutorCard/TutorCard";
 import useAxiosSecure from "../../components/UseAxiosSecure/useAxiosSecure";
-import axios from "axios";
+
 
 const FindTutor = () => {
   const [tutors, setTutors] = useState([]);

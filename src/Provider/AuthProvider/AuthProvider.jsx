@@ -16,7 +16,6 @@ import axios from "axios";
 
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
-  const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
   const [review, setReview] = useState(0)
   const googleProvider = new GoogleAuthProvider();
@@ -51,8 +50,6 @@ const AuthProvider = ({ children }) => {
     signOutUser,
     loading,
     setLoading,
-    error,
-    setError,
     user,
     setUser,
     userUpdateProfile,
@@ -84,7 +81,7 @@ const AuthProvider = ({ children }) => {
             }
           )
           .then((res) => {
-            console.log("logout", res.data);
+            // console.log("logout", res.data);
             setLoading(false);
           });
       }

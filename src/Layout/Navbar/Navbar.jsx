@@ -6,24 +6,24 @@ import { AuthContext } from "../../Context/AuthContext/AuthContext";
 import { Tooltip as ReactTooltip } from "react-tooltip";
 const Navbar = () => {
   const { user, signOutUser } = useContext(AuthContext);
-  const [theme, setTheme] = useState(false)
+  const [theme, setTheme] = useState(false);
 
-  useEffect(()=>{
-    if(theme){
-      document.documentElement.classList.add('dark')
-    }else{
-      document.documentElement.classList.remove('dark')
+  useEffect(() => {
+    if (theme) {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
     }
-  },[theme])
+  }, [theme]);
 
   const handleSignOut = () => {
     signOutUser()
-    .then(()=>{
-      // console.log('signout successfull')
-    })
-    .catch(error=>{
-      // console.log(error, 'error')
-    })
+      .then(() => {
+        // console.log('signout successfull')
+      })
+      .catch((error) => {
+        // console.log(error, 'error')
+      });
   };
   return (
     <div className="navbar dark:bg-black dark:text-white border-b bg-base-100 lg:px-16 shadow-lg fixed top-0 left-0 right-0 z-50">
@@ -87,7 +87,7 @@ const Navbar = () => {
         </div>
         <div className="flex items-center gap-3">
           <img className="h-8 w-8 md:h-10 md:w-10" src={logo} alt="" />
-          <p className="md:text-2xl text-xl font-semibold">EduSphere</p>
+          <p className="md:text-2xl text-xl font-semibold">TutorBooking</p>
         </div>
       </div>
       <div className="navbar-center hidden lg:flex">
@@ -135,11 +135,8 @@ const Navbar = () => {
         </ul>
       </div>
       <div className="navbar-end">
-        <button onClick={()=> setTheme(!theme)} className="cursor-pointer">
-        {
-          theme ?<CiLight size={35} />:<CiDark size={35} />
-        }
-          
+        <button onClick={() => setTheme(!theme)} className="cursor-pointer">
+          {theme ? <CiLight size={35} /> : <CiDark size={35} />}
         </button>
       </div>
     </div>

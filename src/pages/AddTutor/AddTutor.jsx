@@ -31,7 +31,7 @@ const AddTutor = () => {
   };
 
   return (
-    <div className="flex justify-center items-center h-screen">
+    <div className="flex justify-center items-center py-10">
       <div className="card bg-base-100 dark:bg-black dark:border-2 w-full max-w-sm shrink-0 shadow-2xl">
         <form onSubmit={handleAddTutorials} className="card-body">
           <div className="form-control">

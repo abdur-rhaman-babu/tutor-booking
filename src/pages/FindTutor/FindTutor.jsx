@@ -20,7 +20,7 @@ const FindTutor = () => {
     setTutors(response.data);
   }
 
-  useEffect(() => {
+  useEffect(() => { 
     fetchAllTutors();
   }, []);
 
@@ -37,7 +37,7 @@ const FindTutor = () => {
         <form onSubmit={handleSearchSubmit}>
         <fieldset className="form-control w-80 mx-auto my-5">
           <label className="label">
-            <span className="label-text">Seach Here</span>
+            <span className="label-text dark:text-white">Seach Here</span>
           </label>
           <div className="join">
             <input
@@ -45,7 +45,7 @@ const FindTutor = () => {
               onChange={handleSearchChange}
               type="text"
               placeholder="Search now"
-              className="input input-bordered join-item"
+              className="input input-bordered join-item dark:text-black"
             />
             <button className="btn btn-primary join-item">Search</button>
           </div>

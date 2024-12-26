@@ -17,12 +17,12 @@ const useAxiosSecure = () => {
         return response;
       },
       (error) => {
-        console.log("error caught on the interceptor", error);
+        // console.log("error caught on the interceptor", error);
         if (error.status === 401 || error.status === 403) {
-          console.log("need to logout the user");
+          // console.log("need to logout the user");
           signOutUser()
           .then(()=>{
-            console.log('signout user')
+            // console.log('signout user')
             navigate('/login')
           }).catch(error=>{
             console.log(error)

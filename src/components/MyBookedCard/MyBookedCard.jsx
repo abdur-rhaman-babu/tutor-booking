@@ -1,10 +1,8 @@
-import axios from "axios";
-import { useContext } from "react";
-import { AuthContext } from "../../Context/AuthContext/AuthContext";
+
 
 const MyBookedCard = ({ tutor }) => {
   const { name, photo, language, price } = tutor;
-  console.log(tutor);
+  // console.log(tutor);
 
   return (
     <div className="max-w-sm rounded overflow-hidden dark:bg-black shadow-lg bg-white border border-gray-200">

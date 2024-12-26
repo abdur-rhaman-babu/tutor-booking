@@ -36,7 +36,7 @@ const TutorDetails = () => {
       user_email: user?.email
     };
 
-    axios.post('http://localhost:5000/my-booked-tutor', bookedTutor, {withCredentials:true})
+    axiosSecure.post('/my-booked-tutor', bookedTutor, {withCredentials:true})
     .then(res=>{
       console.log(res.data)
       if(res.data.insertedId){

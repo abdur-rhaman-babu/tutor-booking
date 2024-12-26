@@ -2,18 +2,20 @@ import axios from "axios";
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../Context/AuthContext/AuthContext";
 import MyBookedCard from "../../components/MyBookedCard/MyBookedCard";
+import useAxiosSecure from "../../components/UseAxiosSecure/useAxiosSecure";
 
 const MyBookedTutorials = () => {
   const { user } = useContext(AuthContext);
   const [tutors, setTutors] = useState([]);
+  const axiosSecure = useAxiosSecure()
 
   useEffect(() => {
     fetchBookTutor()
   }, [user?.email]);
 
   const fetchBookTutor = async ()=>{
-    axios
-      .get(`http://localhost:5000/my-booked-tutor?email=${user?.email}`, {
+    axiosSecure
+      .get(`/my-booked-tutor?email=${user?.email}`, {
         withCredentials: true,
       })
       .then((res) => {

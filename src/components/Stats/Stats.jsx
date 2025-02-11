@@ -5,7 +5,7 @@ const Stats = () => {
   return (
     <div className="my-14">
       <h1 className="text-center font-bold text-3xl mb-5">Stats</h1>
-      <div className="bg-white dark:bg-black grid grid-cols-2 gap-3 md:grid-cols-3 lg:grid-cols-5 justify-between border-2 border-primary p-5 rounded-lg">
+      <div className="bg-white dark:bg-black grid grid-cols-2 gap-3 md:grid-cols-3 lg:grid-cols-5 justify-between border-2 shadow-sm p-5 rounded-lg">
         <div className="text-center">
           <p className="font-bold text-xl">32,000+</p>
           <p>Experience Tutors</p>

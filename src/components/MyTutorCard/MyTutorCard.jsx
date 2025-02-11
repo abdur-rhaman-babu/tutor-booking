@@ -1,13 +1,16 @@
 import axios from "axios";
 import toast from "react-hot-toast";
 import { Link } from "react-router-dom";
+import { useState } from "react";
+import { FaTrash, FaEdit } from "react-icons/fa";
 import useAxiosSecure from "../UseAxiosSecure/useAxiosSecure";
 
 /* eslint-disable react/prop-types */
 const MyTutorCard = ({ tutor, fetchMyTutor }) => {
   const { name, photo, language, price, description, review, _id } = tutor;
-  const axiosSecure = useAxiosSecure()
-  
+  const axiosSecure = useAxiosSecure();
+  const [isHovered, setIsHovered] = useState(false);
+
   const handleDeleteTutor = async (id) => {
     await axiosSecure.delete(`/tutor/${id}`).then((res) => {
       if (res.data.deletedCount > 0) {
@@ -45,38 +48,60 @@ const MyTutorCard = ({ tutor, fetchMyTutor }) => {
       </div>
     ));
   };
+
   return (
-    <div className="max-w-md bg-gradient-to-br from-blue-50 to-blue-100 border border-gray-200 rounded-xl shadow-lg overflow-hidden transform hover:scale-105 transition duration-300 flex flex-col">
-      <img
-        className="w-full h-56 object-cover rounded-t-xl"
-        src={photo}
-        alt={`${name}'s photo`}
-      />
-      <div className="flex-1 p-6 flex flex-col dark:bg-black">
-        <h3 className="text-2xl font-bold text-gray-800 mb-2 dark:text-white">{name}</h3>
-        <p className="text-sm text-gray-600 mb-4 italic dark:text-white">Review: {review}</p>
-        <div className="flex items-center justify-between text-gray-700 mb-4">
-          <span className="px-3 py-1 bg-gray-200 text-gray-800 rounded-full text-sm">
-            Language: {language}
+    <div
+      className="relative max-w-md bg-white dark:bg-black border border-gray-200 dark:border-gray-700 rounded-xl overflow-hidden transform transition duration-300 hover:scale-105"
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
+      <div className="flex justify-center mt-4">
+        <img
+          className="w-32 h-32 object-cover rounded-full border-4 border-white shadow-md"
+          src={photo}
+          alt={`${name}'s photo`}
+        />
+      </div>
+
+      <div className="p-6 text-center">
+        <h3 className="text-2xl font-bold text-gray-800 dark:text-white">
+          {name}
+        </h3>
+        <p className="text-sm text-gray-600 dark:text-gray-400 italic">
+          Review: {review}
+        </p>
+        <div className="flex justify-center gap-2 mt-2">
+          <span className="px-3 py-1 bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 rounded-full text-sm">
+            {language}
           </span>
           <span className="text-lg font-semibold text-green-500">
             Price: ${price}
           </span>
         </div>
-        <p className="text-sm text-gray-700 mb-4 dark:text-white">{description}</p>
-        <div className="mt-auto flex gap-3">
-          <button
-            onClick={() => handleDeleteWithToast(_id)}
-            className="flex-1 bg-red-500 text-white py-2 rounded-lg shadow-md hover:bg-red-600 transition duration-200"
-          >
-            Delete
-          </button>
-          <Link className="flex-1 text-center bg-yellow-500 text-white py-2 rounded-lg shadow-md hover:bg-yellow-600 transition duration-200" to={`/update/${_id}`}>
-            <button>
-              Update
-            </button>
-          </Link>
-        </div>
+        <p className="text-sm text-gray-700 dark:text-gray-300 mt-2">
+          {description}
+        </p>
+      </div>
+
+      <div
+        className={`absolute inset-0 flex flex-col justify-center items-center bg-black bg-opacity-60 transition-opacity duration-300 ${
+          isHovered ? "opacity-100" : "opacity-0"
+        }`}
+      >
+        <button
+          onClick={() => handleDeleteWithToast(_id)}
+          className="text-white text-3xl p-3 rounded-full bg-red-600 hover:bg-red-700 transition duration-200 mb-3"
+          title="Delete"
+        >
+          <FaTrash />
+        </button>
+        <Link
+          className="text-white text-3xl p-3 rounded-full bg-primary transition duration-200"
+          to={`/update/${_id}`}
+          title="Edit"
+        >
+          <FaEdit />
+        </Link>
       </div>
     </div>
   );

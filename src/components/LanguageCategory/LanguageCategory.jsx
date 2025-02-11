@@ -22,7 +22,7 @@ const LanguageCategory = () => {
           {categories.map((category) => (
             <div key={category._id}>
               <Link to={`/find-tutor/${category?.category}`}>
-                <div className="bg-white dark:bg-black shadow-sm flex items-center justify-between rounded-lg border-2 p-2 cursor-pointer">
+                <div className="bg-white dark:bg-black shadow-sm flex items-center justify-between rounded-lg border p-2 cursor-pointer">
                   <img className="h-10 w-10" src={category?.logo} alt="" />
                   <p>{category?.title}</p>
                   <i>

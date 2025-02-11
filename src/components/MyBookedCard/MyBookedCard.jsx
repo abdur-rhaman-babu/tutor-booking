@@ -1,18 +1,28 @@
 const MyBookedCard = ({ tutor }) => {
-  const { name, photo, language, price} = tutor;
+  const { name, photo, language, price } = tutor;
 
   return (
-    <div className="max-w-sm rounded overflow-hidden dark:bg-black shadow-lg bg-white border border-gray-200">
-      <img className="w-full h-48 object-cover" src={photo} alt={name} />
-      <div className="px-6 py-4">
-        <div className="font-bold text-xl mb-2">{name}</div>
-        <p className="text-gray-700 text-base dark:text-white ">Language: {language}</p>
-        <p className="text-gray-700 text-base dark:text-white">Price: ${price}</p>
+    <div className="relative max-w-md bg-white dark:bg-black dark:to-gray-900 border border-gray-200 dark:border-gray-700 rounded-xl overflow-hidden transform transition duration-300 hover:scale-105">
+      <div className="flex justify-center mt-4">
+        <img
+          className="w-32 h-32 object-cover rounded-full border-4 border-white shadow-md"
+          src={photo}
+          alt={`${name}'s photo`}
+        />
       </div>
-      <div className="px-6 py-4">
-        <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-          Review
-        </button>
+
+      <div className="p-6 text-center">
+        <h3 className="text-2xl font-bold text-gray-800 dark:text-white">
+          {name}
+        </h3>
+        <div className="flex justify-center gap-2 mt-2">
+          <span className="px-3 py-1 bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 rounded-full text-sm">
+            {language}
+          </span>
+          <span className="text-lg font-semibold text-green-500">
+            Price: ${price}
+          </span>
+        </div>
       </div>
     </div>
   );

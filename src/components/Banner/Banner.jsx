@@ -41,12 +41,12 @@ const Banner = () => {
     >
       {[slider_1, slider_2, slider_3].map((slide, index) => (
         <SwiperSlide key={index}>
-          <div className="flex items-center justify-between px-4 py-8 md:px-16 bg-white dark:bg-black h-[500px]">
+          <div className="flex items-center justify-between px-4 md:pl-16 bg-white dark:bg-black h-[500px]">
             <BannerText />
 
             <div className="hidden md:block md:w-1/2 md:h-full">
               <img
-                className="w-full h-full object-cover rounded-lg shadow-lg"
+                className="w-full h-full object-cover shadow-lg rounded-bl-full"
                 src={slide}
                 alt={`Banner ${index + 1}`}
               />

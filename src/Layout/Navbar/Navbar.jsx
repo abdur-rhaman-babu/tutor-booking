@@ -36,7 +36,7 @@ const Navbar = () => {
 
   return (
     <nav className="bg-white dark:bg-black text-black dark:text-white border-b shadow-lg fixed top-0 left-0 right-0 z-50 w-full">
-      <div className="container mx-auto px-4 lg:px-16 flex justify-between items-center py-3">
+      <div className="container mx-auto px-4 lg:px-16 flex justify-between items-center py-4">
         <div className="flex items-center gap-4">
           <button
             className="lg:hidden focus:outline-none"

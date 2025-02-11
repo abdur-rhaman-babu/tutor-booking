@@ -4,7 +4,7 @@ import { TiWorld } from "react-icons/ti";
 
 const DiscoverTutor = () => {
     return (
-        <div className="max-w-7xl mx-auto py-10">
+        <div className="py-10">
             <h1 className="text-center font-bold text-3xl mb-5">Discover the TutorTime difference</h1>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
                 <div className="border-2 rounded-lg shadow-lg p-5 text-center">

@@ -8,7 +8,7 @@ const Main = () => {
     <div className="dark:bg-black dark:text-white">
       <Navbar />
 
-      <div className="min-h-[80vh] pt-20">
+      <div className="min-h-[80vh] pt-16 bg-background dark:bg-black">
         {navigation.state === "loading" ? (
           <div className="flex items-center justify-center h-screen">
             <span className="loading loading-spinner loading-lg"></span>

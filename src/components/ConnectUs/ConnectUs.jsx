@@ -5,7 +5,7 @@ import { PiSelectionAllFill } from "react-icons/pi";
 
 const ConnectUs = () => {
     return (
-        <div className="max-w-7xl mx-auto py-10">
+        <div className="py-10">
             <h1 className="text-3xl text-center font-bold my-5">The ways Tutors can connect with us.</h1>
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-5">
                 <div className="border-2 shadow-lg rounded-lg p-4 text-center">

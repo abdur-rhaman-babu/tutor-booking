@@ -1,14 +1,15 @@
 import { useContext, useState } from "react";
+import { IoEye, IoEyeOff } from "react-icons/io5";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Context/AuthContext/AuthContext";
-import { IoEye, IoEyeOff } from "react-icons/io5";
 import toast from "react-hot-toast";
 
 const Register = () => {
-  const {createUser, setUser, userUpdateProfile } = useContext(AuthContext);
+  const { createUser, setUser, userUpdateProfile } = useContext(AuthContext);
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState('');
-  const navigate = useNavigate()
+  const navigate = useNavigate();
+
   const handleRegister = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -17,110 +18,67 @@ const Register = () => {
     const email = form.email.value;
     const password = form.password.value;
 
-    const lowerCase = /[a-z]/;
-    if (!lowerCase.test(password)) {
-      setError("Password must be at least one lowercase letter");
+    if (!/[a-z]/.test(password)) {
+      setError("Password must contain at least one lowercase letter");
       return;
     }
-
-    const upperCase = /[A-Z]/;
-    if (!upperCase.test(password)) {
-      setError("Password must be at least one uppercase letter");
+    if (!/[A-Z]/.test(password)) {
+      setError("Password must contain at least one uppercase letter");
       return;
     }
-
     if (password.length < 6) {
-      setError("Password must be 6 character or upper");
+      setError("Password must be at least 6 characters long");
       return;
     }
 
     const profile = {
       displayName: name,
-      photoURL: photo
-    }
+      photoURL: photo,
+    };
 
     createUser(email, password)
       .then((result) => {
         setUser(result.user);
-        userUpdateProfile(profile)
-        toast.success('Registered successfull')
-        navigate('/')
+        userUpdateProfile(profile);
+        toast.success("Registration successful!");
+        navigate("/");
       })
-      .catch((error) => {
-        // console.log(error, "Error");
-      });  
-      
-
+      .catch(() => {
+        setError("Registration failed. Please try again.");
+      });
   };
+
   return (
-    <div className="flex justify-center items-center py-10">
-      <div className="card bg-base-100 dark:bg-black dark:border-2 w-full max-w-sm shrink-0 shadow-2xl">
-        <form onSubmit={handleRegister} className="card-body">
+    <div className="flex justify-center items-center min-h-screen dark:black">
+      <div className="card bg-white dark:bg-gray-800 dark:border-gray-700 w-full max-w-4xl p-8 rounded-xl">
+        <h2 className="text-3xl font-extrabold text-center text-gray-800 dark:text-white mb-4">Create an Account</h2>
+        <p className="text-center text-gray-600 dark:text-gray-300 mb-6">Join us today!</p>
+        <form onSubmit={handleRegister} className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div className="form-control">
-            <label className="label">
-              <span className="label-text dark:text-white">Name</span>
-            </label>
-            <input
-              name="name"
-              type="name"
-              placeholder="name"
-              className="input input-bordered"
-              required
-            />
+            <label className="label text-gray-700 dark:text-gray-300">Name</label>
+            <input name="name" type="text" placeholder="Enter your name" className="input input-bordered dark:bg-gray-700 dark:text-white focus:ring-2 focus:ring-primary w-full p-3 rounded-lg" required />
           </div>
           <div className="form-control">
-            <label className="label">
-              <span className="label-text dark:text-white">Photo URL</span>
-            </label>
-            <input
-              name="photo"
-              type="text"
-              placeholder="photo url"
-              className="input input-bordered"
-              required
-            />
+            <label className="label text-gray-700 dark:text-gray-300">Photo URL</label>
+            <input name="photo" type="text" placeholder="Enter photo URL" className="input input-bordered dark:bg-gray-700 dark:text-white focus:ring-2 focus:ring-primary w-full p-3 rounded-lg" required />
           </div>
           <div className="form-control">
-            <label className="label">
-              <span className="label-text dark:text-white">Email</span>
-            </label>
-            <input
-              name="email"
-              type="email"
-              placeholder="email"
-              className="input input-bordered"
-              required
-            />
+            <label className="label text-gray-700 dark:text-gray-300">Email</label>
+            <input name="email" type="email" placeholder="Enter your email" className="input input-bordered dark:bg-gray-700 dark:text-white focus:ring-2 focus:ring-primary w-full p-3 rounded-lg" required />
           </div>
           <div className="form-control relative">
-            <label className="label">
-              <span className="label-text dark:text-white">Password</span>
-            </label>
-            <input
-              name="password"
-              type={`${showPassword ? "text" : "password"}`}
-              placeholder="password"
-              className="input input-bordered dark:text-black"
-              required
-            />
-            <i
-              onClick={() => setShowPassword(!showPassword)}
-              className="absolute top-12 right-4 mt-1"
-            >
-              {showPassword ? <IoEyeOff /> : <IoEye />}
-            </i>
+            <label className="label text-gray-700 dark:text-gray-300">Password</label>
+            <input name="password" type={showPassword ? "text" : "password"} placeholder="Enter your password" className="input input-bordered dark:bg-gray-700 dark:text-white focus:ring-2 focus:ring-primary w-full p-3 rounded-lg" required />
+            <div className="absolute top-14 right-2 cursor-pointer" onClick={() => setShowPassword(!showPassword)}>
+              {showPassword ? <IoEyeOff size={20} /> : <IoEye size={20} />}
+            </div>
           </div>
-          <p className="text-red-600">{error}</p>
-          <div className="form-control mt-6">
-            <button className="btn btn-primary">Register</button>
-          </div>
-          <p>
-            Already have an account?{" "}
-            <Link className="text-red-600" to="/login">
-              Login Now
-            </Link>
-          </p>
+          {error && <p className="text-red-500 text-sm text-center col-span-2">{error}</p>}
+          <button className="bg-primary w-full py-3 rounded-lg text-white text-lg duration-300 hover:bg-blue-600 col-span-2">Register</button>
         </form>
+        <p className="text-center mt-6 text-gray-600 dark:text-gray-300">
+          Already have an account? <Link className="text-primary font-semibold hover:underline" to="/login">Login Now</Link>
+        </p>
       </div>
     </div>
   );

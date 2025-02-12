@@ -24,7 +24,7 @@ const Stats = () => {
         </div>
         <div className="text-center bg-white dark:bg-black p-2 rounded-xl border-gray-200 dark:border-gray-700 border">
           <div className="font-bold text-xl flex items-center gap-2 justify-center">
-            4.8 <i className="flex items-center justify-end"><FaStar />
+            4.8 <i className="flex items-center justify-end text-primary"><FaStar />
             <FaStar />
             <FaStar />
             <FaStar />

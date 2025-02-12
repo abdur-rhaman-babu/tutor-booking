@@ -23,7 +23,7 @@ const DiscoverTutor = () => {
                 </div>
                 <div className="text-center bg-white dark:bg-black p-2 rounded-xl border-gray-200 dark:border-gray-700 border">
                     <div className="bg-green-100 p-3 rounded-full border-2 inline-block">
-                    <i className="text-green-600"><FaHandHoldingHeart size={45} /></i>
+                    <i className="text-accent"><FaHandHoldingHeart size={45} /></i>
                     </div>
                     <h3 className="my-3 text-2xl font-semibold">Peace of mind</h3>
                     <p>With TutorTime you can rest easy knowing your child is in the right hands. Each tutor has been referenced checked, police checked and interviewed. Only subject matter experts and top ATAR achievers can join the TutorTime platform – just 1 in 5 who apply make the cut!</p>

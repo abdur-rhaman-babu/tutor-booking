@@ -35,7 +35,7 @@ const AddTutor = () => {
       <SectionTitle title="Add Tutor" />
 
       <div className="flex justify-center items-center min-h-screen p-2">
-        <div className="w-full max-w-4xl bg-white dark:bg-black border border-gray-200 dark:border-gray-700 rounded-xl p-8">
+        <div className="w-full max-w-4xl bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl p-8">
           <h2 className="text-2xl font-bold text-center text-gray-800 dark:text-white mb-6">
             Add Tutor
           </h2>
@@ -51,7 +51,7 @@ const AddTutor = () => {
                 defaultValue={user?.displayName}
                 name="name"
                 type="text"
-                className="w-full p-3 border rounded-lg dark:bg-gray-700 dark:text-white"
+                className="input input-bordered dark:bg-gray-700 dark:text-white focus:ring-2 focus:ring-primary w-full p-3 rounded-lg"
                 readOnly
                 required
               />
@@ -65,7 +65,7 @@ const AddTutor = () => {
                 defaultValue={user?.email}
                 name="email"
                 type="email"
-                className="w-full p-3 border rounded-lg dark:bg-gray-700 dark:text-white"
+                className="input input-bordered dark:bg-gray-700 dark:text-white focus:ring-2 focus:ring-primary w-full p-3 rounded-lg"
                 readOnly
                 required
               />
@@ -79,7 +79,7 @@ const AddTutor = () => {
                 name="photo"
                 type="text"
                 placeholder="Enter photo URL"
-                className="w-full p-3 border rounded-lg dark:bg-gray-700 dark:text-white"
+                className="input input-bordered dark:bg-gray-700 dark:text-white focus:ring-2 focus:ring-primary w-full p-3 rounded-lg"
                 required
               />
             </div>
@@ -112,7 +112,7 @@ const AddTutor = () => {
                 name="price"
                 type="text"
                 placeholder="Enter price"
-                className="w-full p-3 border rounded-lg dark:bg-gray-700 dark:text-white"
+                className="input input-bordered dark:bg-gray-700 dark:text-white focus:ring-2 focus:ring-primary w-full p-3 rounded-lg"
                 required
               />
             </div>
@@ -124,7 +124,7 @@ const AddTutor = () => {
               <textarea
                 name="description"
                 placeholder="Write a short description..."
-                className="w-full p-3 border rounded-lg h-24 dark:bg-gray-700 dark:text-white"
+                className="input input-bordered h-24 dark:bg-gray-700 dark:text-white focus:ring-2 focus:ring-primary w-full p-3 rounded-lg"
                 required
               ></textarea>
             </div>

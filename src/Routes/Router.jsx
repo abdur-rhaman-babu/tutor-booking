@@ -12,6 +12,7 @@ import ErrorPage from "../components/ErrorPage/ErrorPage";
 import UpdateTutor from "../pages/UpdateTutor/UpdateTutor";
 import TutorDetails from "../pages/TutorDetails/TutorDetails";
 import FindTutorCategory from "../pages/FindTutorCategory/FindTutorCategory";
+import About from "../pages/About/About";
 
 export const router = createBrowserRouter([
     {
@@ -30,6 +31,10 @@ export const router = createBrowserRouter([
             {
                 path:'/find-tutor/:category',
                 element:<FindTutorCategory/>
+            },
+            {
+                path:'/about',
+                element:<About/>
             },
             {
                 path:'/addTutorials',

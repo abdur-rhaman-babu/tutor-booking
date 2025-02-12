@@ -45,6 +45,9 @@ const UpdateTutor = () => {
       <SectionTitle title="Update Tutor" />
       <div className="flex justify-center items-center h-screen">
         <div className="card bg-white dark:bg-black w-full max-w-4xl shrink-0 border dark:border-gray-800 p-6">
+        <h2 className="text-2xl font-bold text-center text-gray-800 dark:text-white mb-6">
+            Update Tutor
+          </h2>
           <form
             onSubmit={handleUpdateTutor}
             className="grid grid-cols-1 md:grid-cols-2 gap-6"
@@ -60,7 +63,7 @@ const UpdateTutor = () => {
                 name="name"
                 type="name"
                 placeholder="Name"
-                className="input input-bordered dark:bg-gray-700 dark:text-white"
+                className="input input-bordered dark:bg-gray-700 dark:text-white focus:ring-2 focus:ring-primary w-full p-3 rounded-lg"
                 readOnly
                 required
               />
@@ -77,7 +80,7 @@ const UpdateTutor = () => {
                 name="email"
                 type="email"
                 placeholder="Email"
-                className="input input-bordered dark:bg-gray-700 dark:text-white"
+                className="input input-bordered dark:bg-gray-700 dark:text-white focus:ring-2 focus:ring-primary w-full p-3 rounded-lg"
                 readOnly
                 required
               />
@@ -94,7 +97,7 @@ const UpdateTutor = () => {
                 name="photo"
                 type="text"
                 placeholder="Photo URL"
-                className="input input-bordered dark:bg-gray-700 dark:text-white"
+                className="input input-bordered dark:bg-gray-700 dark:text-white focus:ring-2 focus:ring-primary w-full p-3 rounded-lg"
                 required
               />
             </div>
@@ -135,7 +138,7 @@ const UpdateTutor = () => {
                 name="price"
                 type="text"
                 placeholder="Price"
-                className="input input-bordered dark:bg-gray-700 dark:text-white"
+                className="input input-bordered dark:bg-gray-700 dark:text-white focus:ring-2 focus:ring-primary w-full p-3 rounded-lg"
                 required
               />
             </div>
@@ -147,7 +150,7 @@ const UpdateTutor = () => {
                 </span>
               </label>
               <textarea
-                className="border rounded-lg h-20 p-3 dark:bg-gray-700 dark:text-white"
+                className="input h-24 input-bordered dark:bg-gray-700 dark:text-white focus:ring-2 focus:ring-primary w-full p-3 rounded-lg"
                 name="description"
                 defaultValue={description}
                 placeholder="Write a short description..."

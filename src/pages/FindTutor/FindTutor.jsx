@@ -32,12 +32,11 @@ const FindTutor = () => {
 
   return (
     <section>
-          <SectionTitle title="Find Tutors" />
+      <SectionTitle title="Find Tutors" />
       <div className="lg:container mx-3 dark:bg-black pb-10 pt-1">
         <div>
           <form onSubmit={handleSearchSubmit}>
             <fieldset className="form-control w-80 mx-auto my-5">
-            
               <div className="join">
                 <input
                   value={search}
@@ -46,7 +45,9 @@ const FindTutor = () => {
                   placeholder="Search now"
                   className="input input-bordered join-item dark:text-black"
                 />
-                <button className="bg-primary hover:bg-blue-600 text-white join-item px-2">Search</button>
+                <button className="bg-primary hover:bg-blue-600 text-white join-item px-2">
+                  Search
+                </button>
               </div>
             </fieldset>
           </form>

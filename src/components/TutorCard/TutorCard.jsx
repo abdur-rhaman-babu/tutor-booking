@@ -15,13 +15,19 @@ const TutorCard = ({ tutor }) => {
       </div>
 
       <div className="p-6 text-center">
-        <h3 className="text-2xl font-bold text-gray-800 dark:text-white">{name}</h3>
-        <p className="text-sm text-gray-600 dark:text-gray-400 italic">Review: {review}</p>
+        <h3 className="text-2xl font-bold text-gray-800 dark:text-white">
+          {name}
+        </h3>
+        <p className="text-sm text-gray-600 dark:text-gray-400 italic">
+          Review: {review}
+        </p>
         <div className="flex justify-center gap-2 mt-2">
           <span className="px-3 py-1 bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 rounded-full text-sm">
             {language}
           </span>
-          <span className="text-lg font-semibold text-green-500">Price: ${price}</span>
+          <span className="text-lg font-semibold text-green-500">
+            Price: ${price}
+          </span>
         </div>
       </div>
 

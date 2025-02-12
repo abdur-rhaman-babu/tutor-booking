@@ -4,6 +4,7 @@ import DiscoverTutor from "../../components/DiscoverTutor/DiscoverTutor";
 import LanguageCategory from "../../components/LanguageCategory/LanguageCategory";
 import Stats from "../../components/Stats/Stats";
 import FindTutorCategory from "../FindTutorCategory/FindTutorCategory";
+import Faq from "./Faq/Faq";
 
 const Home = () => {
   return (
@@ -14,6 +15,7 @@ const Home = () => {
         <LanguageCategory />
         <ConnectUs />
         <DiscoverTutor />
+        <Faq/>
       </div>
     </div>
   );

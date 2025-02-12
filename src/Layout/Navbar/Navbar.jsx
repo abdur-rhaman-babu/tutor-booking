@@ -14,6 +14,7 @@ const Navbar = () => {
 
   const links = [
     { name: "Home", path: "/" },
+    { name: "About", path: "/about" },
     { name: "Find Tutors", path: "/find-tutor" },
     { name: "Add Tutorials", path: "/addTutorials", protected: true },
     { name: "My Tutorials", path: "/myTutorials", protected: true },
@@ -45,13 +46,17 @@ const Navbar = () => {
             <FaBars />
           </button>
 
-          <Link to='/'><div className="flex items-center gap-3">
-            <img className="h-8 w-8 md:h-10 md:w-10" src={logo} alt="Logo" />
-            <p className="font-bold text-2xl dark:text-white hidden md:block text-primary uppercase font-mono">Tutor <span>Booking</span></p>
-          </div></Link>
+          <Link to="/">
+            <div className="flex items-center gap-3">
+              <img className="h-8 w-8 md:h-10 md:w-10" src={logo} alt="Logo" />
+              <p className="font-bold text-2xl dark:text-white hidden md:block text-primary uppercase font-mono">
+                Tutor <span>Booking</span>
+              </p>
+            </div>
+          </Link>
         </div>
 
-        <ul className="hidden lg:flex space-x-6">
+        <ul className="hidden lg:flex space-x-2">
           {links.map(
             (link) =>
               (!link.protected || user?.email) && (
@@ -112,7 +117,10 @@ const Navbar = () => {
             </NavLink>
           )}
 
-          <button onClick={() => setTheme(!theme)} className="cursor-pointer text-primary dark:text-white">
+          <button
+            onClick={() => setTheme(!theme)}
+            className="cursor-pointer text-primary dark:text-white"
+          >
             {theme ? <CiLight size={30} /> : <CiDark size={30} />}
           </button>
         </div>

@@ -6,7 +6,7 @@ import toast from "react-hot-toast";
 import SectionTitle from "./../../components/SectionTitle/SectionTitle";
 
 const AddTutor = () => {
-  const { user } = useContext(AuthContext);
+  const { user, loading } = useContext(AuthContext);
   const navigate = useNavigate();
   const axiosSecure = useAxiosSecure();
 
@@ -131,7 +131,11 @@ const AddTutor = () => {
 
             <div className="md:col-span-2 text-center">
               <button className="w-full bg-primary font-semibold hover:bg-blue-600 text-white py-3 rounded-lg transition">
-                Add Tutor
+                {loading ? (
+                  <span className="loading loading-spinner loading-md"></span>
+                ) : (
+                  "Add Tutor"
+                )}
               </button>
             </div>
           </form>
